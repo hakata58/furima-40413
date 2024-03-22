@@ -6,25 +6,25 @@
 | ------------------ | ------ | --------------------------|
 |  nickname          | string | null: false               |
 |  email             | string | null: false,unique: true  |
-|  encrypted_password| string | null: false, unique: true |
-|  surname           | string | ull: false                |
-|  name              | string | null: false               |
+|  encrypted_password| string | null: false,              |
 |  surname           | string | null: false               |
+|  name              | string | null: false               |
+|  surname_katakana  | string | null: false               |
 |  name_katakana     | string | null: false               |
-|  birthdate         | string | null: false               |
+|  birthdate         | date   | null: false               |
 
 
 ### Association
 
 - has_many :items
-- has_many :buy
+- has_many :buys
 
 
 ## items テーブル
 
 | Column       | Type         | Options                        |
 | ------------ | -------------| ------------------------------ |
-|  itemsname   |  text        |  null: false                   |
+|  itemsname   |  string      |  null: false                   |
 |  explanation |  text        |  null: false                   |
 |  category_id |  integer     |  null: false                   |
 |  situation_id|  integer     |  null: false                   |
@@ -69,10 +69,10 @@
 |  post_code          | string | null: false               |
 |  prefectures        | string | null: false               | 
 |  municipaloties     | string | null: false               |
-|  street_address     | text   | null: false               |
-|  building_name      | text   | null: false               |
-|  telephone          | text   | null: false               |
-  
+|  street_address     | string | null: false               |
+|  building_name      | string |                           |
+|  telephone          | string | null: false               |
+|  buy_id            |references| null: false,foreign_key: true |
 
 ### Association
 
