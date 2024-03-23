@@ -29,7 +29,7 @@
 |  category_id |  integer     |  null: false                   |
 |  situation_id|  integer     |  null: false                   |
 |  delivery_id |  integer     |  null: false                   |
-|  prefectures_id |  integer     |  null: false                   |
+|  prefecture_id |  integer     |  null: false                   |
 |  day_id      |  integer     |  null: false                   |
 |  price       |  integer     |  null: false                   |
 |  user        |  references  |  null: false,foreign_key: true |
@@ -37,7 +37,7 @@
 
 ### Association
 
-- has_one :addresses
+- has_one :address
 - belongs_to :user
 
 
@@ -54,7 +54,7 @@
 
 - belongs_to :user
 - belongs_to :item
-- has_one :addresses
+- has_one :address
 
 
 
@@ -65,7 +65,7 @@
 | Column              | Type   | Options                   |
 | ------------------  | ------ | --------------------------|
 |  post_code          | string | null: false               |
-|  prefectures_id     | integer| null: false              |
+|  prefecture_id     | integer| null: false              |
 |  municipaloties     | string | null: false               |
 |  street_address     | string | null: false               |
 |  building_name      | string |                           |
