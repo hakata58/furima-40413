@@ -13,7 +13,7 @@ class User < ApplicationRecord
     validates :name
   end
 
-  with_options presence: true, format: { with: /\A[ァ-ヶ]+\z/, message: '全角文字を使用してください' } do
+  with_options presence: true, format: { with: /\A[ァ-ヶ一]+\z/, message: '全角文字を使用してください' } do
     validates :surname_katakana
     validates :name_katakana
   end
