@@ -7,7 +7,14 @@ end
 
 
 describe 'ユーザー新規登録' do
+
+  context '新規登録できるとき' do
+    it '記入が正しければ登録できる' do
+      expect(@user).to be_valid
+    end
+  end
   
+  context '新規登録できないとき' do
   it 'nicknameが空では登録できない' do
     @user.nickname = ''
   @user.valid?
@@ -42,7 +49,17 @@ describe 'ユーザー新規登録' do
     expect(@user.errors.full_messages).to include('Password is too short (minimum is 6 characters)')
   end
   it 'パスワードは、半角英数字混合での入力が必須であること' do
-    @user.password = 'aaaaaaa'
+    @user.password = '111111'
+    @user.valid?
+    expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
+  end
+  it 'パスワードは、半角英数字混合での入力が必須であること' do
+    @user.password = 'てすと'
+    @user.valid?
+    expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
+  end
+  it 'パスワードは、半角英数字混合での入力が必須であること' do
+    @user.password = 'aaaaaa'
     @user.valid?
     expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
   end
@@ -98,5 +115,6 @@ describe 'ユーザー新規登録' do
     @user.valid?
     expect(@user.errors.full_messages).to include("Birthdate can't be blank")
   end
+end
 end
 end
