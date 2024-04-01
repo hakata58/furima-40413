@@ -3,11 +3,11 @@ function count (){
   articleText.addEventListener("keyup", () => {
     const countVal =articleText.value*0.1;
     const charNum  = document.getElementById("add-tax-price");
-    charNum.innerHTML = Math.round(countVal);
+    charNum.innerHTML = Math.floor(countVal);
 
     const profitVal =articleText.value;
     const profitNum  = document.getElementById("profit");
-    profitNum.innerHTML =articleText.value-Math.floor(countVal);
+    profitNum.innerHTML = Math.floor(profitVal-countVal);
     
   });
 };
