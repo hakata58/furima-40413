@@ -10,4 +10,5 @@ FactoryBot.define do
     name_katakana         { 'リクタ' }
     birthdate             { '1948-10-17' }
   end
+  
 end

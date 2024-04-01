@@ -79,7 +79,8 @@ describe '商品出品機能' do
     it '商品画像が空では出品出来ない' do
       @item.image = nil
       @item.valid?
-      expect(@item.errors.full_messages).to include("Image name can't be blank")
+      binding.pry
+      expect(@item.errors.full_messages).to include("Image can't be blank")
     end
 
 
@@ -87,9 +88,10 @@ describe '商品出品機能' do
       @item.user = nil
       @item.valid?
       expect(@item.errors.full_messages).to include('User must exist')
-    end@item.user = nil
+      @item.user = nil
       @item.valid?
       expect(@item.errors.full_messages).to include('User must exist')
+    end
    
     
    
