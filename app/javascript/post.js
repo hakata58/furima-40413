@@ -7,7 +7,7 @@ function count (){
 
     const profitVal =articleText.value;
     const profitNum  = document.getElementById("profit");
-    profitNum.innerHTML =articleText.value-Math.round(countVal);
+    profitNum.innerHTML =articleText.value-Math.floor(countVal);
     
   });
 };

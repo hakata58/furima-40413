@@ -18,4 +18,7 @@ class User < ApplicationRecord
     validates :name_katakana
   end
   validates :birthdate, presence: true
+
+
+  has_many :items
 end

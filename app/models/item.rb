@@ -6,8 +6,10 @@ class Item < ApplicationRecord
   belongs_to :prefectures
   belongs_to :day
 
+  
 
   has_one_attached :image
+  belongs_to :user
   
 
 
@@ -21,6 +23,5 @@ class Item < ApplicationRecord
   validates :delivery_id, numericality: { other_than: 1 } 
   validates :prefectures_id, numericality: { other_than: 1 } 
   validates :day_id, numericality: { other_than: 1 } 
-  validates :price, presence: true, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999 }
-  validates :price, format: { with: /\A[0-9]+\z/, message: "は半角数値のみで入力してください" }
+  validates :price, presence: true, numericality: {only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999 }
 end
