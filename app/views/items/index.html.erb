@@ -128,11 +128,11 @@
     </div>
     <ul class='item-lists'>
 
-      
+      <%if @items.exists?%>
+        <% @items.each do |item| %>
       <li class='list'>
         <%= link_to "#" do %>
-        <%if @items.exists?%>
-        <% @items.each do |item| %>
+        
         <div class='item-img-content'>
        
 
@@ -157,9 +157,11 @@
             </div>
           </div>
         </div>
+        <% end %>
         
       </li>
-      <% end %>
+     <% end %>
+      
 
       
       
@@ -181,7 +183,7 @@
         </div>
         <% end %>
          <% end %>
-         <% end %>
+         
       </li>
      
       
