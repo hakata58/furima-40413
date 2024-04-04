@@ -1,7 +1,7 @@
 class ItemsController < ApplicationController
 
   before_action :authenticate_user!, only: [:new,:edit]
-  before_action :set_furima ,only: [:show, :edit, :update]
+  before_action :set_furima ,only: [:show, :edit, :update,:destroy]
 
 
 
@@ -41,6 +41,16 @@ class ItemsController < ApplicationController
     render :edit, status: :unprocessable_entity
     end
   end
+
+  def destroy
+    if current_user == @item.user && user_signed_in?
+    @item.destroy
+    redirect_to root_path
+    else
+      redirect_to root_path
+    end
+  end
+
 
 
   private
