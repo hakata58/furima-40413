@@ -1,7 +1,7 @@
 class ItemsController < ApplicationController
 
   before_action :authenticate_user!, only: [:new,:edit]
- 
+  before_action :set_furima ,only: [:show, :edit, :update]
 
 
 
@@ -24,16 +24,17 @@ class ItemsController < ApplicationController
   end
 
   def show
-    @item=Item.find(params[:id])
+    
     
   end
 
   def edit
-    @item = Item.find(params[:id])
+    redirect_to root_path unless current_user == @item.user
+    
   end
 
   def update
-    @item = Item.find(params[:id])
+    
     if @item.update(item_params)
     redirect_to item_path(params[:id])
     else
@@ -46,6 +47,10 @@ class ItemsController < ApplicationController
 
   def item_params
     params.require(:item).permit(:image,:items_name,:explanation,:category_id,:situation_id,:delivery_id,:prefectures_id,:day_id,:price).merge(user_id: current_user.id)
+  end
+
+  def set_furima
+    @item = Item.find(params[:id])
   end
 
 end
