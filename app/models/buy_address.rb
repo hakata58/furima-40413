@@ -1,19 +1,18 @@
 class BuyAddress
   include ActiveModel::Model
-  attr_accessor :item_id, :user_id, :post_code , :prefecture_id, :municipaloties, :street_address, :building_name, :telephone,:buy_id
+  attr_accessor :item_id, :user_id, :post_code , :prefectures_id, :municipaloties, :street_address, :building_name, :telephone,:buy_id
 
   with_options presence: true do
     validates :item_id
     validates :user_id
 
-    validates :post_code
-    validates :municipaloties, presence: true
-    validates :street_address, presence: true
-    validates :telephone, presence: true
+    validates_format_of :post_code, with: /\A[a-zA-Z0-9-]+\z/
+    validates :municipaloties
+    validates :street_address
+    validates :telephone, length: { in: 10..11 }, format: { with: /\A[0-9]+\z/ }
+  end 
 
-  end
-
-  validates :prefecture_id, numericality: { other_than: 1, message: "can't be blank" }
+  validates :prefectures_id, numericality: { other_than: 1, message: "can't be blank" }
 
 
   def save
@@ -21,7 +20,7 @@ class BuyAddress
     buy = Buy.create(item_id: item_id, user_id: user_id)
     # 住所を保存する
     # donation_idには、変数donationのidと指定する
-    Address.create(post_code: post_code, prefecture_id: prefecture_id, municipaloties: municipaloties, street_address: street_address, building_name: building_name, telephone: telephone, buy_id: buy.id)
+    Address.create(post_code: post_code, prefectures_id: prefectures_id, municipaloties: municipaloties, street_address: street_address, building_name: building_name, telephone: telephone, buy_id: buy.id)
   end
 
 end
