@@ -1,11 +1,22 @@
 class BuysController < ApplicationController
-  before_action :set_params 
+  before_action :set_params
+  before_action :authenticate_user!  ,only: [:index]
   
   
   def index
+    if current_user == @item.user || @item.buy.present? 
+    redirect_to root_path 
+    end
+      
+
+     
+     
     
+
     gon.public_key = ENV["PAYJP_PUBLIC_KEY"]
     @buy_address = BuyAddress.new
+    
+    
     
    
   end
