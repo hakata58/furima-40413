@@ -7,6 +7,7 @@ class ItemsController < ApplicationController
 
   def index
     @items=Item.all.order("created_at DESC")
+    
   end
 
   def new
@@ -29,7 +30,10 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    redirect_to root_path unless current_user == @item.user
+   if current_user != @item.user || @item.buy.present?
+    redirect_to root_path
+   end 
+    # redirect_to root_path unless current_user == @item.user || @item.buy.blank?
     
   end
 
