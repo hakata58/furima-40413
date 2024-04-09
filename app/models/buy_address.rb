@@ -6,7 +6,7 @@ class BuyAddress
     validates :item_id
     validates :user_id
 
-    validates_format_of :post_code, with: /\A[a-zA-Z0-9-]+\z/
+    validates_format_of :post_code, with: /\A\d{3}-\d{4}\z/
     validates :municipaloties
     validates :street_address
     validates :telephone, length: { in: 10..11 }, format: { with: /\A[0-9]+\z/ }

@@ -2,7 +2,11 @@ require 'rails_helper'
 
 RSpec.describe BuyAddress, type: :model do
   before do
-    @buy_address = FactoryBot.build(:buy_address)
+    
+
+  user = FactoryBot.create(:user)
+  item = FactoryBot.create(:item)
+  @buy_address = FactoryBot.build(:buy_address, user_id: user.id, item_id: item.id)
   
 end
 
@@ -58,6 +62,26 @@ describe '商品購入機能' do
       @buy_address.token = nil
       @buy_address.valid?
       expect(@buy_address.errors.full_messages).to include("Token can't be blank")
+    end
+    it "電話番号は12桁以上では購入できない" do
+      @buy_address.telephone = '111111111111111'
+      @buy_address.valid?
+      expect(@buy_address.errors.full_messages).to include("Telephone is too long (maximum is 11 characters)")
+    end
+    it "電話番号は英数字以外が含まれている場合は購入できない" do
+      @buy_address.telephone = 'ああああああああああ'
+      @buy_address.valid?
+      expect(@buy_address.errors.full_messages).to include("Telephone is invalid")
+    end
+    it 'ユーザーIDが必須であること' do
+      @buy_address.user_id = ''
+      @buy_address.valid?
+      expect(@buy_address.errors.full_messages).to include("User can't be blank")
+    end
+    it 'アイテムIDが必須であること' do
+      @buy_address.item_id = ''
+      @buy_address.valid?
+      expect(@buy_address.errors.full_messages).to include("Item can't be blank")
     end
 
     
