@@ -17,7 +17,7 @@ class BuyAddress
 
 
   def save
-    # 寄付情報を保存し、変数donationに代入する,なぜユーザーIDが受け取れるのか、ルーティングでitemコントローラーをねすとしないといけない理由。
+    # 寄付情報を保存し、変数donationに代入する
     buy = Buy.create(item_id: item_id, user_id: user_id)
     # 住所を保存する
     # donation_idには、変数donationのidと指定する
